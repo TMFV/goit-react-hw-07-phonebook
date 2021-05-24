@@ -7,6 +7,9 @@ import appOperations from "./redux/app/app-operations";
 import { connect } from "react-redux";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchContacts();
+  }
   /*   state = {
     contacts: [
       { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
@@ -105,6 +108,7 @@ const mapStateToProps = (state) => ({
   filter: state.app.filter,
 });
 const mapDispatchToProrps = (dispatch) => ({
+  fetchContacts: () => dispatch(appOperations.fetchContacts()),
   formSubmitHandler: (contactData) =>
     dispatch(appOperations.addContact(contactData)),
   contactDelete: (contactId) =>

@@ -33,6 +33,7 @@ import operations from "./app-operations";
   }
 }; */
 const contacts = createReducer([], {
+  [actions.fetchContactSuccess]: (_, { payload }) => payload,
   [actions.addContactSuccess]: (state, { payload }) => [...state, payload],
 
   [operations.addContact]: (state, { type, payload }) => {
@@ -44,7 +45,7 @@ const contacts = createReducer([], {
       return state;
     }
   },
-  [operations.deleteContact]: (state, { types, payload }) => {
+  [actions.deleteContactSuccess]: (state, { types, payload }) => {
     let newArrAfterDel = state.filter((elem) => elem.id !== payload);
     return [...newArrAfterDel];
   },
@@ -57,6 +58,9 @@ const loading = createReducer(false, {
   [actions.deleteContactRequest]: () => true,
   [actions.deleteContactSuccess]: () => false,
   [actions.deleteContactError]: () => false,
+  [actions.fetchContactRequest]: () => true,
+  [actions.fetchContactSuccess]: () => false,
+  [actions.fetchContactError]: () => false,
 });
 /* const filter = (state = "", { type, payload }) => {
   switch (type) {
