@@ -27,7 +27,7 @@ class ContactList extends Component {
   }
 }
 ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
+  contacts: PropTypes.array,
   del: PropTypes.func.isRequired,
 };
 ContactList.defaultProps = {

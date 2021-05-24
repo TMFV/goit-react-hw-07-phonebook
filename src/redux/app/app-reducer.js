@@ -73,10 +73,10 @@ const loading = createReducer(false, {
 }; */
 // _ - parameter not used
 
-const filter = createReducer("", {
-  [actions.filterSet]: (_, { payload }) => {
+const filters = createReducer("", {
+  [actions.filterSet]: (state, { payload }) => {
     return payload;
   },
 });
 
-export default combineReducers({ contacts, filter, loading });
+export default combineReducers({ contacts, filters, loading });

@@ -82,14 +82,19 @@ class App extends Component {
     this.setState({ ...this.state, filter: `${filterData}` });
   };
 */
-  filterArr = (fArr) => {
+
+  /*   filterArr = (fArr) => {
     let newArr = fArr.filter((cur) =>
       cur.name.toUpperCase().includes(this.props.filter)
     );
     return newArr;
-  };
+  }; */
 
   render() {
+    console.log(this.props.contacts);
+    console.log(this.props.filter);
+    console.log(this.props.visibleArray);
+
     return (
       <div className="App">
         <h1>Phonebook</h1>
@@ -98,7 +103,7 @@ class App extends Component {
         <h1>Contacts</h1>
         <Filter setFilterToState={this.props.filterSet} />
         <ContactList
-          contacts={this.filterArr(this.props.contacts)}
+          contacts={this.props.visibleArray}
           del={this.props.contactDelete}
         />
       </div>
@@ -109,7 +114,9 @@ const mapStateToProps = (state) => ({
   isLoadingContacts: selectors.getIsLoading(state),
   contacts: selectors.getContacts(state),
   filter: selectors.getFilter(state),
+  visibleArray: selectors.getVisibleFilterArray(state),
 });
+
 const mapDispatchToProrps = (dispatch) => ({
   fetchContacts: () => dispatch(appOperations.fetchContacts()),
   formSubmitHandler: (contactData) =>
