@@ -79,4 +79,4 @@ const filter = createReducer("", {
   },
 });
 
-export default combineReducers({ contacts, filter });
+export default combineReducers({ contacts, filter, loading });

@@ -92,6 +92,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Phonebook</h1>
+        {this.props.isLoadingContacts && <h2>Loading ...</h2>}
         <ContactForm onSubmitData={this.props.formSubmitHandler} />
         <h1>Contacts</h1>
         <Filter setFilterToState={this.props.filterSet} />
@@ -104,6 +105,7 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state) => ({
+  isLoadingContacts: state.app.loading,
   contacts: state.app.contacts,
   filter: state.app.filter,
 });
