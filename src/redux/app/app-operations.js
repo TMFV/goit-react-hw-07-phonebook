@@ -1,12 +1,23 @@
 import axios from "axios";
 import actions from "./app-actions";
 
-const fetchContacts = () => (dispatch) => {
+/* const fetchContacts = () => dispatch => {
   dispatch(actions.fetchContactRequest());
   axios
     .get("/contacts")
     .then(({ data }) => dispatch(actions.fetchContactSuccess(data)))
     .catch((error) => dispatch(actions.deleteContactError(error)));
+}; */
+
+//ASYNC Version
+const fetchContacts = () => async (dispatch) => {
+  dispatch(actions.fetchContactRequest());
+  try {
+    const { data } = await axios.get("/contacts");
+    dispatch(actions.fetchContactSuccess(data));
+  } catch (error) {
+    dispatch(actions.deleteContactError(error));
+  }
 };
 const addContact = (contact) => (dispatch) => {
   dispatch(actions.addContactRequest());
