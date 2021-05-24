@@ -3,6 +3,7 @@ import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./ContactList/ContactList";
 import Filter from "./Filter/Filter";
 import appActions from "./redux/app/app-actions";
+import appOperations from "./redux/app/app-operations";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -105,8 +106,9 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProrps = (dispatch) => ({
   formSubmitHandler: (contactData) =>
-    dispatch(appActions.addContact(contactData)),
-  contactDelete: (contactId) => dispatch(appActions.deleteContact(contactId)),
+    dispatch(appOperations.addContact(contactData)),
+  contactDelete: (contactId) =>
+    dispatch(appOperations.deleteContact(contactId)),
   filterSet: (str) => dispatch(appActions.filterSet(str)),
 });
 export default connect(mapStateToProps, mapDispatchToProrps)(App);
